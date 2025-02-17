@@ -14,6 +14,6 @@ COPY credentials.py /home/ubuntu/engfrosh/engfrosh_site/credentials.py
 RUN chmod +x /home/ubuntu/start.sh
 RUN chmod +x /home/ubuntu/environment
 RUN rm -f /home/ubuntu/engfrosh/engfrosh_site/engfrosh_site.sock
-RUN chown -R ubuntu:ubuntu /home/ubuntu
+RUN chown -R ubuntu:www-data /home/ubuntu
 
 ENTRYPOINT ["/home/ubuntu/start.sh"]
