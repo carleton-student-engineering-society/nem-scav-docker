@@ -1,0 +1,25 @@
+networks:
+  caddy-net:
+    name: caddy-net
+    external: true
+
+services:
+  site:
+    container_name: nem-scav
+    image: cses/nem-scav
+    build:
+        context: .
+        dockerfile: Dockerfile
+        network: host
+    networks:
+      - caddy-net
+    environment:
+      - WORKERS=50
+    volumes:
+      - ./certs/:/etc/letsencrypt/
+      - ../media/:/usr/share/engfrosh_site/files/media/
+    labels:
+      caddy: nem-scav.mycses.ca:80
+      caddy.reverse_proxy: "{{upstreams 80}}"
+      caddy.reverse_proxy.header_up: "X-Forwarded-Proto https"
+    restart: unless-stopped

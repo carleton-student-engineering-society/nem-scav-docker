@@ -1,5 +1,5 @@
 #!/bin/bash
-export NAME=mariadb
+export NAME=nem-mariadb
 docker build -t engfrosh/$NAME . --no-cache
 
 docker stop $NAME
